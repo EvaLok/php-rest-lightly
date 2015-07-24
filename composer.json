@@ -1,0 +1,27 @@
+{
+	"name": "evalok/php-rest-lightly",
+	"type": "library",
+	"description" : "a lightweight component for implementing a REST API",
+	"keywords": ["rest"],
+	"license": "MIT",
+	"homepage": "https://github.com/EvaLok/php-rest-lightly",
+	"authors": [
+		{
+			"name" : "Eva Lok",
+			"email" : "squidstock@hotmail.com",
+			"homepage" : "https://github.com/EvaLok",
+			"role" : "Developer"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/EvaLok/php-rest-lightly/issues"
+	},
+	"require": {
+		"php" : ">=5.4.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"RestLightly\\": "src"
+		}
+	}
+}
