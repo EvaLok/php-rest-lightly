@@ -8,6 +8,9 @@ authentication or other operations can be done within the endpoint classes thems
 # installation instructions
 `composer require evalok/php-rest-lightly`
 
+example usage:
+https://github.com/EvaLok/php-rest-lightly/blob/master/demo/public/index.php
+
 # demo
 configure `.htaccess` in `demo/public`
 
