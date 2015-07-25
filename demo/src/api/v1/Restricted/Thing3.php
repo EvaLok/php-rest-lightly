@@ -1,13 +1,13 @@
 <?php
 
-namespace api\v1;
+namespace api\v1\Restricted;
 
 use 
 	RestLightly\v1\Endpoint\Identified
 			as Endpoint
 ;
 
-class Thing1 extends Endpoint {
+class Thing3 extends Endpoint {
 	public function get( Array $params )
 	{
 		return $this->respond([
