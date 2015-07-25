@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /php-rest-lightly/demo/public/
+RewriteRule ^index\.php$ - [L]
+RewriteRule . /php-rest-lightly/demo/public/index.php [L]
