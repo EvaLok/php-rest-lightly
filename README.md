@@ -6,7 +6,7 @@ this library helps you to leverage namespacing to implicitly define API endpoint
 authentication or other operations can be done within the endpoint classes themselves
 
 # installation instructions
-composer
+`composer require evalok/php-rest-lightly`
 
 # demo
 configure `.htaccess` in `demo/public`
