@@ -43,7 +43,7 @@ configure `.htaccess` in `demo/public`
 }
 ```
 
-* api/v1/Restricted/Thing3/888
+* `api/v1/Restricted/Thing3/888`
 ```javascript
 "403: Forbidden"
 ```
