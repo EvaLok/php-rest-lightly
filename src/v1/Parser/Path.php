@@ -5,7 +5,12 @@ namespace RestLightly\v1\Parser;
 use 
 	ReflectionClass,
 	ReflectionException
-
+		,
+	RestLightly\v1\Parser\Path\Exception
+			as Exception
+		,
+	RestLightly\v1\Endpoint\Identified
+			as IdentifiedEndpoint
 ;
 
 class Path {
@@ -20,35 +25,51 @@ class Path {
 		$this->parts = explode('/', $path);
 		$this->namespace = str_replace('/', '\\', $namespace);
 		
-		$this->parse($this->parts);
-		
-		return $this;
+		return $this->parse($this->parts);
 	}
 	
 	private function parse( $parts, $idx = 0, $owner = false)
 	{
+		// determine namespace
 		$ns = (
 			is_object($owner)
 				?
-			$owner->getNamespace()
+			get_class($owner) . '\\'
 				:
 			$this->namespace
 		);
 		
+		// create object instance
 		try {
 			$obj = (new ReflectionClass($ns . $parts[$idx]))->newInstance();
+			$idx++;
 		} catch( ReflectionException $ex ){
-			var_dump( $ex ); exit;
+			throw new Exception($ex->getMessage());
 		}
 		
+		// if applicable, set owner
+		if( is_object($owner) ){
+			$obj->setOwner($owner);
+		}
 		
-		var_dump( get_class($obj) ); exit;
+		// check if class is identifiable
+		if( $obj instanceof IdentifiedEndpoint ){
+			if( ! isset($parts[$idx]) ){
+				throw new Exception("ID not set");
+			}
+			
+			$obj->setId($parts[$idx]);
+			$idx++;
+		}
 		
-		// check if class has `parseId` method
-			// parse id
+		// if still parts left to parse, recurse
+		if( isset($parts[$idx]) ){
+			return $this->parse($parts, $idx, $obj);
+		}
 		
-		// recurse
-			// if last idx hit, set endpoint
+		$this->endpoint = $obj;
+		
+		return $this;
 	}
 	
 	public function getEndpoint()

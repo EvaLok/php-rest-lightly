@@ -45,6 +45,8 @@ try {
 			'code' => $ex->getCode()
 		]
 	];
+	
+	$response['body'] = $ex->getCode() . ': ' . $ex->getMessage();
 }
 
 foreach( $response['headers'] as $header ){

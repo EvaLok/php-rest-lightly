@@ -5,6 +5,9 @@ namespace RestLightly\v1;
 use
 	RestLightly\v1\Instantiator
 		,
+	RestLightly\v1\Parser\Path\Exception
+		as PathParserException
+		,
 	RestLightly\v1\Parser\Data
 			as DataParser
 		,
@@ -46,10 +49,14 @@ class Controller {
 		}
 		
 		// instantiate endpoint
-		$endpoint = Instantiator::instantiate(
-			$params['path'], 
-			$params['path_root']
-		);
+		try {
+			$endpoint = Instantiator::instantiate(
+				$params['path'],
+				$params['path_root']
+			);
+		} catch( PathParserException $ex ){
+			throw new EndpointException("Not Found", 404);
+		}
 		
 		// fetch response from endpoint
 		$response = call_user_func([$endpoint, $params['method']], $data);
@@ -68,7 +75,7 @@ class Controller {
 					]
 				]
 			),
-			'body' => 'test body'
+			'body' => $response['body']
 		];
 	}
 	

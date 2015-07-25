@@ -10,31 +10,34 @@ use
 class Thing1 extends Endpoint {
 	public function get( Array $params )
 	{
-		return [
+		return $this->respond([
+			'id' => $this->id,
 			'class' => __CLASS__,
 			'method' => __METHOD__,
 			'message' => 'testing testing 123',
 			'params' => $params
-		];
+		]);
 	}
 	
 	public function post( Array $params )
 	{
-		return [
+		return $this->respond([
+			'id' => $this->id,
 			'class' => __CLASS__,
 			'method' => __METHOD__,
 			'message' => 'testing testing 123',
 			'params' => $params
-		];
+		]);
 	}
 	
 	public function put( Array $params )
 	{
-		return [
+		return $this->respond([
+			'id' => $this->id,
 			'class' => __CLASS__,
 			'method' => __METHOD__,
 			'message' => 'testing testing 123',
 			'params' => $params
-		];
+		]);
 	}
 }

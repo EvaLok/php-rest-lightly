@@ -10,6 +10,17 @@ use
 abstract class Endpoint {
 	protected $owner;
 	
+	protected function respond( array $response )
+	{
+		if( empty($response['headers']) || empty($response['body']) ){
+			return [
+				'body' => $response
+			];
+		} else {
+			return $response;
+		}
+	}
+	
 	public function setOwner( Endpoint $owner )
 	{
 		$this->owner = $owner;

@@ -11,11 +11,11 @@ class v1 extends Endpoint {
 	
 	public function get( Array $params )
 	{
-		return [
+		return $this->respond([
 			'class' => __CLASS__,
 			'method' => __METHOD__,
 			'message' => 'api version one, could put documentation here',
 			'params' => $params
-		];
+		]);
 	}
 }
