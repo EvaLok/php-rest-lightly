@@ -15,7 +15,7 @@ https://github.com/EvaLok/php-rest-lightly/blob/master/demo/public/index.php
 configure `.htaccess` in `demo/public`
 
 # Examples
-* `GET: api/Thing1/555`
+* `GET: api/v1/Thing1/555`
 ```javascript
 {
 	id: 555,
