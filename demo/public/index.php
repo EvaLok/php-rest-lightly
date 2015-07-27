@@ -5,23 +5,22 @@
 require(__DIR__ . '/autoloader.php');
 // ----------------------------------------------------------------------------
 
-use 
+use
 	RestLightly\v1\Controller
-		,
+	,
 	RestLightly\v1\Endpoint\Exception
-			as EndpointException
-;
+	as EndpointException;
 
 try {
 	$response = Controller::route([
 		'path' => trim(
 			(
-				strpos($_SERVER['REQUEST_URI'], '?')
-					?
+			strpos($_SERVER['REQUEST_URI'], '?')
+				?
 				strstr(strstr($_SERVER['REQUEST_URI'], '/api/'), '?', true)
-					:
+				:
 				strstr($_SERVER['REQUEST_URI'], '/api/')
-			), 
+			),
 			'/?'
 		),
 		'method' => $_SERVER['REQUEST_METHOD'],
@@ -35,9 +34,9 @@ try {
 		],
 		'path_root' => 'api/'
 	]);
-} catch( EndpointException $ex ){
+} catch (EndpointException $ex) {
 	// ~!!~ log exception?
-	
+
 	$response['headers'] = [
 		[
 			'string' => $ex->getCode() . ': ' . $ex->getMessage(),
@@ -45,15 +44,15 @@ try {
 			'code' => $ex->getCode()
 		]
 	];
-	
+
 	$response['body'] = $ex->getCode() . ': ' . $ex->getMessage();
 }
 
-foreach( $response['headers'] as $header ){
+foreach ($response['headers'] as $header) {
 	header($header['string'], $header['replace'], $header['code']);
 }
 
-if( ! empty($response['body']) ){
+if (!empty($response['body'])) {
 	echo json_encode($response['body']);
 }
 
