@@ -87,8 +87,7 @@ class Controller {
 	static public function isValidPath( Array $params )
 	{
 		if( strpos($params['path'], $params['path_root']) !== 0 ){
-			var_dump($params); exit;
-			
+
 			return false;
 		}
 		
