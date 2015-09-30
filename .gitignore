@@ -1,4 +1,10 @@
-/.settings
-/.buildpath
-/.project
-/composer.phar
+# eclipose
+.settings
+.buildpath
+.project
+
+# webstorm
+.idea
+
+# composer
+composer.phar
