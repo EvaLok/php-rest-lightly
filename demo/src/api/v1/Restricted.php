@@ -16,6 +16,7 @@ class Restricted extends Endpoint {
 
 	public function get(Array $params) {
 		return $this->respond([
+			'id' => $this->id, // TODO: find where this comes from
 			'owner' => (array)$this->owner,
 			'class' => __CLASS__,
 			'method' => __METHOD__,
