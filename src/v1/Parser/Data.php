@@ -30,7 +30,7 @@ class Data {
 				$input = file_get_contents('php://input');
 				
 				// first try json_decode, fallback to parse_str
-				if( ! $this->data = json_decode($input) ){
+				if( ! $this->data = json_decode($input, true) ){
 					parse_str($input, $this->data);
 				}
 		}
