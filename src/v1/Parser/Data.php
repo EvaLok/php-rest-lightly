@@ -22,10 +22,6 @@ class Data {
 				$this->data = $_GET ?: [];
 				break;
 				
-			case 'post':
-				$this->data = $_POST ?: [];
-				break;
-				
 			default:
 				$input = file_get_contents('php://input');
 				
